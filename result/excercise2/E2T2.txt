@@ -1,0 +1,17 @@
+From Inspector
+These are most common issues
+1. Web instances are reachable from a wide range of ports and protocol (ex:port 23 UDP/TCP associated with telnet,port 20,21 TCP/UDP associated with FTPS )
+Severity : High, Medium
+Recommendation: 
+Remove over permissive rules
+- allow connect from everwhere with all Protocols and ports
+- allow SSH from everywhere
+
+From AWS config
+1. S3 buckets are not enabled with server-side encryption
+Recommendation: Enable server-side encryption on bucket level, and enfore server-side encryption when putting objects in buckets via bucket policies
+2. Assign over permissive IAM policy for Web instance
+Detailed: Allow web instance to perform all actions with S3
+3. EC2 instances don't use VPC endpoint to connect to S3
+Recommendation: Apply VPC endpoint so that traffic resides in VPC, not go to public internet
+

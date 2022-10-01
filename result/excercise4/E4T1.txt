@@ -1,0 +1,9 @@
+
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+- Only include realiable IP addresses in the ingress rule of SSH, or don't allow SSH connection
+- Disable SSH password authentication
+- Enable WAF rate-based rules to detect abnormal behaviors
+- Based on findings of AWS guard, trigger Cloud Watch event to block SSH from attacker IPs
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+We can assign specific IAM role to users who need access to the S3 bucket. We enforce server-side encryption with a customer-managed Key (SSE-KMS), and only the mentioned IAM role has right to use the key to decrypt data
+By doing this, even IAM credentials of Application instances are exploited, attackers cannot access data in S3.

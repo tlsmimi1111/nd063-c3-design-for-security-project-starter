@@ -1,0 +1,31 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+Depend on requirements of project and the language I use, I will choose different tools.
+If the I use cloudformation
+- cfn-lint, cloudSploit ...
+if I use terraform (there are others languages but for now I just assume we are using terraform)
+- Chef inspec, regula, terrascan ...
+
+Because I need to choose one to give an example of a violation: I choose Regula
+
+### Example vulnerability
+- when we define terraform code, if we declare an over permissive IAM policy, such as "s3:*". It will violate rule 
+this https://docs.fugue.co/FG_R00218.html
+
+##Scan AMI’s or containers for OS vulnerabilities
+Same above there are many tools, depends on usages and requirements we can choose a suitable tool.
+If we need dynamic scanning, we can use
+- aquasec, twistlock ..
+If we only need static scanning, we can use
+- AWS inspector, clair ...
+
+I choose AWS inspector for this question
+
+### Example vulnerability
+- If we allow SSH password login, It will violate the rule check
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+I choose AWS config
+### Example vulnerability
+For example, we have a rule to enforce default encryption to be enabled for S3. If any buckets don't enable default-encryption, It will violate the rules

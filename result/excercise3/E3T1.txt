@@ -1,0 +1,15 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+the brute force attack is marked as "High" for Severity
+The finding provides information about:
+Attackers
+- where : region, account, attacker resource (the attacked instance)
+- when : time when the finding is created/updated
+Resource affected
+- instance detail : ARN, instance type ...
+and ACtion to remediate 
+- blocking SSH for the attacker IPs
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+It might analyze VPC flow flogs that web application is located in.
+By looking at the VPC flow logs, GuardDuty finds abnormal behavior of the attacked instance trying to connect to the web instance multiple times
+GuardDuty is assigned with proper permission to read VPC flow logs.

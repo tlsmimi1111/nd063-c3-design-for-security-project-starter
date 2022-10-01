@@ -1,0 +1,19 @@
+
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+- we can modify the security group of the webinstance. In detail, 
+    - modify SSH connection rule to only allow acccess from trusted resources, or totally remove SSH related rule.
+    - remove the super over permissive rule to accept all connections from all protocols, from all protocols
+    - only allow HTTP/HTTPS connections from the ALB, by defining source of these rules as the Security group of the ALB
+- we can put the web application instance to a private network, add Gateway endpoints so that this instance can talk to S3 privately
+- we can implement Cloudwatch alarms based on custom metrics related to internet security to get alerted
+
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+- I beleive it don't solve the problem. Because VPC endpoint only allow traffics to S3 remain in private network, it doesn't do anything related to authorization.
+If the attack instance manages to SSH into the web instance, It will still be able to get secret in the seceret bucket.
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+- No, It only encrypts objects that are put in the bucket after the default encryption is enabled
+
+# What would happen if the original cloud formation templates are applied to this environment.
+- In this case, the cloudformation template will be marked as drifted. It means that resources have been changed in comparision with what are defined in the template

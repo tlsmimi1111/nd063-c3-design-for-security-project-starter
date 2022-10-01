@@ -1,0 +1,3 @@
+1.Security group of web application instance allows SSH from all IP, allow connect from all protocol from everywhere. it would cause the instance being reachable from everywhere
+
+2. S3 buckets don't enfore sever-side encryption, don't block all public. It cause the content being readable by everyone who has read-access to S3 objects
